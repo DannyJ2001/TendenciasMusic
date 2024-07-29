@@ -15,6 +15,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/canciones")
+@CrossOrigin(origins = "*")
 public class CancionController {
 
     @Autowired

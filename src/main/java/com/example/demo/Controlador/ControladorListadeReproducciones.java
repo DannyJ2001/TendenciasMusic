@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/listas-reproduccion")
+@CrossOrigin(origins = "*")
 public class ControladorListadeReproducciones {
 
 

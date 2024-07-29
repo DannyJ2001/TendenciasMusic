@@ -22,13 +22,13 @@ public class ControladorListadeReproducciones {
     @Autowired
     private ICancionServiceImpl cancionService;
 
-    @GetMapping
+    @GetMapping("listarPlayLists")
     public ResponseEntity<Iterable<ListadeReproduccion>> obtenerTodas() {
         Iterable<ListadeReproduccion> listas = listaDeReproduccionService.findAll();
         return ResponseEntity.ok(listas);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("ListarPlayList/{id}")
     public ResponseEntity<ListadeReproduccion> obtenerPorId(@PathVariable Long id) {
         ListadeReproduccion lista = listaDeReproduccionService.findById(id);
         if (lista == null) {
@@ -37,7 +37,7 @@ public class ControladorListadeReproducciones {
         return ResponseEntity.ok(lista);
     }
 
-    @PostMapping
+    @PostMapping("crearPlaylist")
     public ResponseEntity<ListadeReproduccion> crearListaDeReproduccion(@RequestBody ListadeReproduccion listaDeReproduccion) {
         if (listaDeReproduccion.getName() == null || listaDeReproduccion.getName().trim().isEmpty()) {
             return ResponseEntity.badRequest().build();
@@ -57,7 +57,7 @@ public class ControladorListadeReproducciones {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("ModificarPlayList/{id}")
     public ResponseEntity<ListadeReproduccion> actualizarListaDeReproduccion(@PathVariable Long id, @RequestBody ListadeReproduccion listaDeReproduccion) {
         listaDeReproduccion.setId(id);
         ListadeReproduccion actualizada = listaDeReproduccionService.save(listaDeReproduccion);
@@ -65,7 +65,7 @@ public class ControladorListadeReproducciones {
     }
 
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("EliminarPlayList/{id}")
     public ResponseEntity<Void> eliminarListaDeReproduccion(@PathVariable Long id) {
         ListadeReproduccion listaExistente = listaDeReproduccionService.findById(id);
         if (listaExistente == null) {

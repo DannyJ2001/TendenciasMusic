@@ -24,13 +24,13 @@ public class CancionController {
     @Autowired
     private IListadeReproduccionImpl listaDeReproduccionService;
 
-    @GetMapping("listarPlaysList")
+    @GetMapping("listarTCanciones")
     public ResponseEntity<Iterable<Cancion>> obtenerTodas() {
         Iterable<Cancion> canciones = cancionService.findAll();
         return ResponseEntity.ok(canciones);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("ListarC/{id}")
     public ResponseEntity<Cancion> obtenerPorId(@PathVariable Long id) {
         Cancion cancion = cancionService.findById(id);
         if (cancion == null) {
@@ -66,7 +66,7 @@ public class CancionController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("ModificarC/{id}")
     public ResponseEntity<Cancion> actualizarCancion(@PathVariable Long id, @RequestBody Cancion cancion) {
         Cancion existente = cancionService.findById(id);
         if (existente == null) {
@@ -78,7 +78,7 @@ public class CancionController {
         return ResponseEntity.ok(actualizada);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("EliminarC/{id}")
     public ResponseEntity<Void> eliminarCancion(@PathVariable Long id) {
         Cancion cancionExistente = cancionService.findById(id);
         if (cancionExistente == null) {

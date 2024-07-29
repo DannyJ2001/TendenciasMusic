@@ -24,7 +24,7 @@ public class CancionController {
     @Autowired
     private IListadeReproduccionImpl listaDeReproduccionService;
 
-    @GetMapping("listarTCanciones")
+    @GetMapping("listarTC")
     public ResponseEntity<Iterable<Cancion>> obtenerTodas() {
         Iterable<Cancion> canciones = cancionService.findAll();
         return ResponseEntity.ok(canciones);
@@ -39,7 +39,7 @@ public class CancionController {
         return ResponseEntity.ok(cancion);
     }
 
-    @PostMapping("CrearPlaylist")
+    @PostMapping("CrearC")
     public ResponseEntity<Cancion> crearCancion(@RequestBody Cancion cancion) {
         // Validar la existencia de la lista de reproducción
         if (cancion.getPlaylist() == null || cancion.getPlaylist().getId() == null) {

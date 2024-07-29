@@ -1,6 +1,5 @@
 package com.example.demo.Controlador;
 
-import com.example.demo.modelo.Entity.Cancion;
 import com.example.demo.modelo.Entity.ListadeReproduccion;
 import com.example.demo.Service.ICancionServiceImpl;
 import com.example.demo.Service.IListadeReproduccionImpl;
@@ -10,12 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
-import java.util.List;
-
-@RestController
-@RequestMapping("/listas-reproduccion")
 
 @CrossOrigin(origins = "*")
+@RestController
+@RequestMapping("/listas-reproduccion")
 public class ControladorListadeReproducciones {
 
 
@@ -66,7 +63,7 @@ public class ControladorListadeReproducciones {
         ListadeReproduccion actualizada = listaDeReproduccionService.save(listaDeReproduccion);
         return ResponseEntity.ok(actualizada);
     }
-    
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarListaDeReproduccion(@PathVariable Long id) {

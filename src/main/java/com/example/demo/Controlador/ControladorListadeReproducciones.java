@@ -1,5 +1,6 @@
 package com.example.demo.Controlador;
 
+import com.example.demo.modelo.Entity.Cancion;
 import com.example.demo.modelo.Entity.ListadeReproduccion;
 import com.example.demo.Service.ICancionServiceImpl;
 import com.example.demo.Service.IListadeReproduccionImpl;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/listas-reproduccion")
+
 @CrossOrigin(origins = "*")
 public class ControladorListadeReproducciones {
 
@@ -63,5 +65,17 @@ public class ControladorListadeReproducciones {
         listaDeReproduccion.setId(id);
         ListadeReproduccion actualizada = listaDeReproduccionService.save(listaDeReproduccion);
         return ResponseEntity.ok(actualizada);
+    }
+    
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarListaDeReproduccion(@PathVariable Long id) {
+        ListadeReproduccion listaExistente = listaDeReproduccionService.findById(id);
+        if (listaExistente == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        listaDeReproduccionService.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
